@@ -2,7 +2,9 @@
 
 ## Установка
 
-1. Клонируйте репозиторий:
+1. Команды:
+
    ```sh
    git clone https://github.com/FasTrss/test-env.git
    cd test-env
+   npm start
