@@ -7,7 +7,7 @@ module.exports = {
   entry: './src/index.js',
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'entry.js', // Переименовываем bundle.js в entry.js
+    filename: 'entry.js',
     publicPath: '/',
     clean: true,
   },
@@ -40,10 +40,10 @@ module.exports = {
     minimizer: [new TerserPlugin({
       terserOptions: {
         format: {
-          comments: false, // Убираем комментарии из финального бандла
+          comments: false,
         },
       },
-      extractComments: false, // Убираем файл LICENSE
+      extractComments: false,
     })],
   },
   devServer: {
