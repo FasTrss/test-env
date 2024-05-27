@@ -8,11 +8,9 @@ export const getAxiosInstance = async () => {
       const currentScript = document.currentScript;
       const path = currentScript.src.substring(0, currentScript.src.lastIndexOf('/') + 1);
 
-      const response = await fetch(`${path}env.json`);
-      if (!response.ok) {
-        throw new Error(`Failed to load env.json: ${response.statusText}`);
-      }
-      const env = await response.json();
+      const envModule = await import(/* webpackIgnore: true */ `${path}env.js`);
+      const env = envModule.env;
+
       axiosInstance = axios.create({
         baseURL: env.API_URL,
       });

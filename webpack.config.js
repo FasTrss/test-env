@@ -1,13 +1,11 @@
 const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-const TerserPlugin = require('terser-webpack-plugin');
 
 module.exports = {
   entry: './src/index.js',
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'entry.js',
+    filename: 'a/b/c/entry.js',
     publicPath: 'auto',
     clean: true,
   },
@@ -26,33 +24,19 @@ module.exports = {
     ]
   },
   plugins: [
-    new HtmlWebpackPlugin({
-      template: './public/index.html'
-    }),
     new CopyWebpackPlugin({
       patterns: [
-        { from: './public/env.json', to: 'env.json' }
+        { from: './public/env.js', to: 'a/b/c/env.js' }
       ]
     })
   ],
-  optimization: {
-    minimize: true,
-    minimizer: [new TerserPlugin({
-      terserOptions: {
-        format: {
-          comments: false,
-        },
-      },
-      extractComments: false,
-    })],
-  },
   devServer: {
-    static: {
-      directory: path.join(__dirname, 'dist'),
-    },
     compress: true,
     port: 9000,
     open: true,
     historyApiFallback: true,
+  },
+  optimization: {
+    minimize: true,
   },
 };
